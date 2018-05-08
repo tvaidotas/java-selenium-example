@@ -3,10 +3,8 @@ package com.qa.example;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import org.openqa.selenium.By;
-import org.openqa.selenium.Point;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.junit.experimental.theories.Theories;
+import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.interactions.Actions;
 
@@ -35,7 +33,9 @@ public class ChromeDriverTest {
 		// mouse actions begin
 		Actions builder = new Actions(driver);
 		Point chromeDriverLinkLocation = chromeDriverLink.getLocation();
-		builder.moveByOffset(chromeDriverLinkLocation.x + 1, chromeDriverLinkLocation.y + 1).click().perform();
+		builder.moveByOffset(chromeDriverLinkLocation.x + 1, chromeDriverLinkLocation.y + 1).perform();
+		Thread.sleep(2000);
+		builder.click().perform();
 		// mouse actions end
 
 		assertEquals("ChromeDriver - WebDriver for Chrome", driver.getTitle());
@@ -53,7 +53,18 @@ public class ChromeDriverTest {
 
 		Actions builder = new Actions(driver);
 		Point boxLocation = draggableBox.getLocation();
-		builder.clickAndHold(draggableBox).moveByOffset(50,50).perform();
+		builder.clickAndHold(draggableBox).moveByOffset(500,500).perform();
+
+		Thread.sleep(3000);
+
+
+		JavascriptExecutor jsExec = (JavascriptExecutor) driver;
+		jsExec.executeScript("document.getElementById('tabs-1').scrollDown += 100");
+
+		//WebElement outerBox = driver.findElement(By.xpath("//*[@id=\"tabs-1\"]"));
+		//Thread.sleep(3000);
+		//outerBox.sendKeys(Keys.PAGE_DOWN);
+		//Thread.sleep(3000);
 		//builder.dragAndDropBy(draggableBox,50, 50).perform(); // shorter way
 
 		Thread.sleep(5000);
