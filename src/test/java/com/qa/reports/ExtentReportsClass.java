@@ -82,12 +82,12 @@ public class ExtentReportsClass{
 	public void endReport(){
 		// writing everything to document
 		//flush() - to write or update test information to your report. 
-                extent.flush();
-                //Call close() at the very end of your session to clear all resources. 
-                //If any of your test ended abruptly causing any side-affects (not all logs sent to ExtentReports, information missing), this method will ensure that the test is still appended to the report with a warning message.
-                //You should call close() only once, at the very end (in @AfterSuite for example) as it closes the underlying stream. 
-                //Once this method is called, calling any Extent method will throw an error.
-                //close() - To close all the operation
-                extent.close();
+		extent.flush();
+		//Call close() at the very end of your session to clear all resources.
+		//If any of your test ended abruptly causing any side-affects (not all logs sent to ExtentReports, information missing), this method will ensure that the test is still appended to the report with a warning message.
+		//You should call close() only once, at the very end (in @AfterSuite for example) as it closes the underlying stream.
+		//Once this method is called, calling any Extent method will throw an error.
+		//close() - To close all the operation
+		extent.close();
     }
 }
