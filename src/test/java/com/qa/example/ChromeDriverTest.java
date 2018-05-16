@@ -47,19 +47,20 @@ public class ChromeDriverTest {
 	public void draggableMouseActionOne() throws InterruptedException {
 		driver.get("http://demoqa.com/");
 		driver.manage().window().fullscreen();
+
 		WebElement draggableMenuButton = driver.findElement(By.id("menu-item-140"));
 		draggableMenuButton.click();
+		Thread.sleep(2000);
 		WebElement draggableBox = driver.findElement(By.id("draggable"));
 
 		Actions builder = new Actions(driver);
 		Point boxLocation = draggableBox.getLocation();
-		builder.clickAndHold(draggableBox).moveByOffset(500,500).perform();
-
+		builder.clickAndHold(draggableBox).moveByOffset(50,50).perform();
 		Thread.sleep(3000);
 
 
-		JavascriptExecutor jsExec = (JavascriptExecutor) driver;
-		jsExec.executeScript("document.getElementById('tabs-1').scrollDown += 100");
+		//JavascriptExecutor jsExec = (JavascriptExecutor) driver;
+		//jsExec.executeScript("document.getElementById('tabs-1').scrollDown += 500");
 
 		//WebElement outerBox = driver.findElement(By.xpath("//*[@id=\"tabs-1\"]"));
 		//Thread.sleep(3000);
