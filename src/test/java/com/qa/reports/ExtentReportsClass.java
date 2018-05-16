@@ -4,22 +4,20 @@ import org.testng.annotations.Test;
 import org.testng.AssertJUnit;
 import java.io.File;
 
-import org.testng.Assert;
 import org.testng.ITestResult;
 import org.testng.SkipException;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
-import org.testng.annotations.Test;
 
 import com.relevantcodes.extentreports.ExtentReports;
 import com.relevantcodes.extentreports.ExtentTest;
 import com.relevantcodes.extentreports.LogStatus;
 
 public class ExtentReportsClass{
+
 	ExtentReports extent;
 	ExtentTest logger;
-	
 	
 	@BeforeTest
 	public void startReport(){
@@ -28,7 +26,10 @@ public class ExtentReportsClass{
 		//replaceExisting - Setting to overwrite (TRUE) the existing file or append to it
 		//True (default): the file will be replaced with brand new markup, and all existing data will be lost. Use this option to create a brand new report
 		//False: existing data will remain, new tests will be appended to the existing report. If the the supplied path does not exist, a new file will be created.
-		extent = new ExtentReports (System.getProperty("user.dir") +"/test-output/STMExtentReport.html", true);
+		extent = new ExtentReports (
+				System.getProperty("user.dir") + "/test-output/STMExtentReport.html",
+				true
+		);
 		//extent.addSystemInfo("Environment","Environment Name")
 		extent
                 .addSystemInfo("Host Name", "QA")
@@ -76,6 +77,7 @@ public class ExtentReportsClass{
 		//endTest(logger) : It ends the current test and prepares to create HTML report
 		extent.endTest(logger);
 	}
+
 	@AfterTest
 	public void endReport(){
 		// writing everything to document
