@@ -54,10 +54,8 @@ public class ChromeDriverTest {
 		WebElement draggableBox = driver.findElement(By.id("draggable"));
 
 		Actions builder = new Actions(driver);
-		Point boxLocation = draggableBox.getLocation();
 		builder.clickAndHold(draggableBox).moveByOffset(50,50).perform();
 		Thread.sleep(3000);
-
 
 		//JavascriptExecutor jsExec = (JavascriptExecutor) driver;
 		//jsExec.executeScript("document.getElementById('tabs-1').scrollDown += 500");
@@ -68,7 +66,7 @@ public class ChromeDriverTest {
 		//Thread.sleep(3000);
 		//builder.dragAndDropBy(draggableBox,50, 50).perform(); // shorter way
 
-		Thread.sleep(5000);
+		//Thread.sleep(5000);
 	}
 
 
