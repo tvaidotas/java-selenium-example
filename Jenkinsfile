@@ -3,7 +3,12 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                sh 'echo "Hello world!"'
+                mvn compile
+            }
+        }
+        stage('Test') {
+            steps {
+                mvn test
             }
         }
     }
