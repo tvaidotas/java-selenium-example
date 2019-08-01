@@ -1,6 +1,15 @@
-node {
-    stage 'Build and test'
-    env.PATH = "${tool 'MVN'}/bin:${env.PATH}"
-    checkout scm
-    sh 'mvn clean install'
+pipeline {
+    agent {
+        docker {
+            image 'maven:3-alpine' 
+            args '-v /root/.m2:/root/.m2' 
+        }
+    }
+    stages {
+        stage('Build') { 
+            steps {
+                sh 'mvn -B -DskipTests clean package' 
+            }
+        }
+    }
 }
