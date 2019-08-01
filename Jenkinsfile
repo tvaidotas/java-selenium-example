@@ -1,21 +1,10 @@
-pipeline {
-    agent any
-     tools {
-        MVN 'jdk8'
-        JDK 'maven3'
-     }
-    stages {
-        stage('test java installation') {
-            steps {
-                sh 'java -version'
-                sh 'which java'
-            }
-        }
-        stage('test maven installation') {
-            steps {
-                sh 'mvn -version'
-                sh 'which mvn'
-            }
-        }
+node{
+   stage('SCM Checkout'){
+     git 'https://github.com/tvaidotas/java-selenium-example'
+   }
+   stage('Compile-Package'){
+      // Get maven home path
+      def mvnHome =  tool name: 'maven-3', type: 'maven'   
+      sh "${mvnHome}/bin/mvn package"
     }
 }
