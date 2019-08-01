@@ -1,7 +1,7 @@
 pipeline {
     agent any
      tools {
-        maven 'maven3'
+        MVN 'maven3'
      }
     stages {
         stage('test java installation') {
