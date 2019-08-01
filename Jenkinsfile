@@ -1,14 +1,20 @@
 pipeline {
     agent any
+    tools {
+        jdk 'jdk7'
+        maven 'maven3'
+    }
     stages {
-        stage('Build') {
+        stage('test java installation') {
             steps {
-                mvn compile
+                sh 'java -version'
+                sh 'which java'
             }
         }
-        stage('Test') {
+        stage('test maven installation') {
             steps {
-                mvn test
+                sh 'mvn -version'
+                sh 'which mvn'
             }
         }
     }
