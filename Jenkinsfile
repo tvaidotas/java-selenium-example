@@ -1,12 +1,6 @@
-pipeline {
-    agent any
+node {
+    stage 'Build and test'
     env.PATH = "${tool 'Maven 3'}/bin:${env.PATH}"
-    stages {
-        stage('Build') {
-            steps {
-                sh 'echo "Hello world!"'
-                sh 'mvn compile'
-            }
-        }
-    }
+    checkout scm
+    sh 'mvn clean install'
 }
