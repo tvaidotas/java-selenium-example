@@ -12,30 +12,30 @@ public class ChromeDriverTest {
 
     private static WebDriver driver;
 
-    @Before
-    public void setup() {
-        System.setProperty("webdriver.chrome.driver", "C:\\development\\web_driver\\chromedriver.exe");
-        driver = new ChromeDriver();
-    }
+	@Before
+	public void setup() {
+		// line above is only needed if we don't place chromedriver.exe in the root directory of the project
+		//System.setProperty("webdriver.chrome.driver", "C:/development/web_driver/chromedriver.exe");
+		driver = new ChromeDriver();
+	}
 
     @Test
-    public void testGoogleSearch() throws InterruptedException {
-        // Optional, if not specified, WebDriver will search your path for chromedriver.
-        try {
+    public void exampleSelenium() throws InterruptedException
+        {
+		driver.manage().window().fullscreen();
+        Thread.sleep(1000);
             driver.get("http://www.google.com/");
-            driver.manage().window().fullscreen();
-            Thread.sleep(5000); // Let the user actually see something!
-            WebElement searchBox = driver.findElement(By.name("q"));
-            searchBox.sendKeys("ChromeDriver");
-            searchBox.submit();
-            WebElement chromeDriverLink = driver
-                    .findElement(By.linkText("ChromeDriver - WebDriver for Chrome - Google Sites"));
-            chromeDriverLink.click();
-            Thread.sleep(5000); // Let the user actually see something!
-            // here you could assert page title or some text or by page URL you're in the
-            // correct place
-        } finally {
-        }
+
+            Thread.sleep(1000);
+            WebElement googleSearchField = driver.findElement(By.name("q"));
+            googleSearchField.sendKeys("funny vines compilation");
+            Thread.sleep(2000);
+		googleSearchField.submit();
+            Thread.sleep(2000);
+		WebElement funnyVine = driver
+                    .findElement(By.partialLinkText("Best Vines of All Time Vine Compilation"));
+            funnyVine.click();
+            Thread.sleep(15000);
     }
 
     @After
