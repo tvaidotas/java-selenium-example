@@ -16,7 +16,11 @@ public class ChromeDriverTest {
 
     @Before
     public void setup() {
-        System.setProperty("webdriver.chrome.driver", "./chromedriver");
+        if (isLinux()){
+            System.setProperty("webdriver.chrome.driver", "./chromedriver");
+        } else {
+            System.setProperty("webdriver.chrome.driver", "./chromedriver.exe");
+        }
         driver = new ChromeDriver();
     }
 
@@ -52,6 +56,12 @@ public class ChromeDriverTest {
     @After
     public void tearDown() {
         driver.quit();
+    }
+
+    public boolean isLinux(){
+        String os = System.getProperty("os.name").toLowerCase();
+        if (os.contains("win")) return false;
+        return true;
     }
 
 }
