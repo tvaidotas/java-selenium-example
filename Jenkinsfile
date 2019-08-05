@@ -17,6 +17,7 @@ pipeline {
         }
         stage('test'){
             steps {
+                sh 'sudo apt-get install libgtk2.0-0:i386 libsm6:i386'
                 sh 'chmod +x ./chromedriver'
                 sh 'mvn test'
             }
