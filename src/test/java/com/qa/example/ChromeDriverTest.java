@@ -3,8 +3,9 @@ package com.qa.example;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.experimental.theories.Theories;
-import org.openqa.selenium.*;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.interactions.Actions;
 
@@ -16,7 +17,8 @@ public class ChromeDriverTest {
 
 	@Before
 	public void setup() {
-		System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir") + "\\chromedriver.exe");
+		// line above is only needed if we don't place chromedriver.exe in the root directory of the project
+		//System.setProperty("webdriver.chrome.driver", "C:/development/web_driver/chromedriver.exe");
 		driver = new ChromeDriver();
 	}
 
@@ -28,18 +30,9 @@ public class ChromeDriverTest {
 		WebElement searchBox = driver.findElement(By.name("q"));
 		searchBox.sendKeys("ChromeDriver");
 		searchBox.submit();
-		WebElement chromeDriverLink = driver.findElement(By.linkText("ChromeDriver - WebDriver for Chrome - Google Sites"));
-
-		// mouse actions begin
-		Actions builder = new Actions(driver);
-		Point chromeDriverLinkLocation = chromeDriverLink.getLocation();
-		builder.moveByOffset(chromeDriverLinkLocation.x + 1, chromeDriverLinkLocation.y + 1).perform();
-		Thread.sleep(2000);
-		builder.click().perform();
-		// mouse actions end
-
-		assertEquals("ChromeDriver - WebDriver for Chrome", driver.getTitle());
-
+		WebElement chromeDriverLink = driver
+				.findElement(By.linkText("ChromeDriver - WebDriver for Chrome - Google Sites"));
+		chromeDriverLink.click();
 		Thread.sleep(5000);
 	}
 
