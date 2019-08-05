@@ -17,6 +17,7 @@ pipeline {
         }
         stage('test'){
             steps {
+                sh 'chmod +x ./chromedriver'
                 sh 'mvn test'
             }
         }
