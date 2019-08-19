@@ -26,8 +26,7 @@ public class ChromeDriverTest {
 		WebElement searchBox = driver.findElement(By.name("q"));
 		searchBox.sendKeys("ChromeDriver");
 		searchBox.submit();
-		WebElement chromeDriverLink = driver
-				.findElement(By.linkText("ChromeDriver - WebDriver for Chrome - Google Sites"));
+		WebElement chromeDriverLink = driver.findElement(By.partialLinkText("WebDriver for Chrome"));
 		chromeDriverLink.click();
 		Thread.sleep(5000);
 	}
