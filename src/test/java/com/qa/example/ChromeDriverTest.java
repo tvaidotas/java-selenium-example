@@ -8,8 +8,12 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeDriverService;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.interactions.Actions;
+
+import java.io.File;
+import java.io.IOException;
 
 public class ChromeDriverTest {
 
@@ -29,7 +33,22 @@ public class ChromeDriverTest {
 //        options.addArguments("--disable-dev-shm-usage");
 //        options.addArguments("--remote-debugging-port=9222");
 
-        driver = new ChromeDriver();
+        driver = new ChromeDriver(
+                (ChromeDriverService)(new ChromeDriverService.Builder() {
+                    @Override
+                    protected File findDefaultExecutable() {
+                        if (new File("/snap/bin/chromium.chromedriver").exists()) {
+                            return new File("/snap/bin/chromium.chromedriver") {
+                                @Override
+                                public String getCanonicalPath() throws IOException {
+                                    return this.getAbsolutePath();
+                                }
+                            };
+                        } else {
+                            return super.findDefaultExecutable();
+                        }
+                    }
+                }).build() /*, options */);
     }
 
     @Test
