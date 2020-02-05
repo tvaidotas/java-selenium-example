@@ -18,17 +18,18 @@ public class ChromeDriverTest {
     @Before
     public void setup() {
         if (isLinux()){
-            System.setProperty("webdriver.chrome.driver", "./chromedriver");
+            System.setProperty("webdriver.chrome.driver", "/snap/bin/chromium.chromedriver");
         } else {
             System.setProperty("webdriver.chrome.driver", "./chromedriver.exe");
         }
-        ChromeOptions options = new ChromeOptions();
-        options.addArguments("--headless");
-        options.addArguments("--no-sandbox");
-        options.addArguments("--disable-dev-shm-usage");
-        options.addArguments("--remote-debugging-port=9222");
+//        ChromeOptions options = new ChromeOptions();
+//        options.setBinary("/usr/bin/chromium-browser");
+//        options.addArguments("--headless");
+//        options.addArguments("--no-sandbox");
+//        options.addArguments("--disable-dev-shm-usage");
+//        options.addArguments("--remote-debugging-port=9222");
 
-        driver = new ChromeDriver(options);
+        driver = new ChromeDriver();
     }
 
     @Test
