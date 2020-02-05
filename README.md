@@ -10,3 +10,29 @@
 ##### Everything inside lib and the .jar file need to be added as libraries for the project
 
 ##### Extent-config.xml needs to be added to the root of the project
+
+### Running selenium tests on Ubuntu 18.04 VM
+
+Prerequisites:
+* maven
+* java
+* chromium browser (version 77)
+* chrome driver (version 77)
+
+
+Install maven and chromium driver with the script below.
+
+```sudo apt update
+
+sudo apt install -y maven
+
+sudo wget http://security.ubuntu.com/ubuntu/pool/universe/c/chromium-browser/chromium-browser_77.0.3865.120-0ubuntu1~snap1_amd64.deb
+
+sudo apt install ./chromium-browser_77.0.3865.120-0ubuntu1~snap1_amd64.deb
+```
+
+Clone the project
+
+Change directory into the project directory
+
+Run ```mvn test```
