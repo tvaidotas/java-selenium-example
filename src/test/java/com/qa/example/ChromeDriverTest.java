@@ -39,17 +39,17 @@ public class ChromeDriverTest {
         WebElement pictures = driver.findElement(By.partialLinkText("Images for funny cat"));
         pictures.click();
 
-        Actions builder = new Actions(driver);
-        builder.click().moveByOffset(146, 322).perform();
-        Thread.sleep(1500);
-        JavascriptExecutor js = (JavascriptExecutor) driver;
-        js.executeScript("window.scrollBy(0,197)");
-        for (int index = 0; index < 10; index++) {
-            WebElement nextButton = driver.findElement(By.cssSelector("#irc-rac > a"));
-            nextButton.click();
-            //builder.click().moveByOffset(1331, 481).perform();
-            Thread.sleep(1500);
-        }
+//        Actions builder = new Actions(driver);
+//        builder.click().moveByOffset(146, 322).perform();
+//        Thread.sleep(1500);
+//        JavascriptExecutor js = (JavascriptExecutor) driver;
+//        js.executeScript("window.scrollBy(0,197)");
+//        for (int index = 0; index < 10; index++) {
+//            WebElement nextButton = driver.findElement(By.cssSelector("#irc-rac > a"));
+//            nextButton.click();
+//            //builder.click().moveByOffset(1331, 481).perform();
+//            Thread.sleep(1500);
+//        }
         Thread.sleep(15000);
     }
 
