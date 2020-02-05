@@ -27,7 +27,6 @@ public class ChromeDriverTest {
             System.setProperty("webdriver.chrome.driver", "./chromedriver.exe");
         }
         ChromeOptions options = new ChromeOptions();
-        options.setBinary("/usr/bin/chromium-browser");
         options.addArguments("--headless");
         options.addArguments("--no-sandbox");
         options.addArguments("--disable-dev-shm-usage");
@@ -49,6 +48,11 @@ public class ChromeDriverTest {
                         }
                     }
                 }).build(), options );
+    }
+
+    public boolean isLinux(){
+        String os = System.getProperty("os.name").toLowerCase();
+        return os.contains("win");
     }
 
     @Test
@@ -83,12 +87,6 @@ public class ChromeDriverTest {
     @After
     public void tearDown() {
         driver.quit();
-    }
-
-    public boolean isLinux(){
-        String os = System.getProperty("os.name").toLowerCase();
-        if (os.contains("win")) return false;
-        return true;
     }
 
 }
