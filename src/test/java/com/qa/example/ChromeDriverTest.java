@@ -31,7 +31,7 @@ public class ChromeDriverTest {
 		searchBox.sendKeys("ChromeDriver");
 		searchBox.submit();
 		WebElement chromeDriverLink = driver
-				.findElement(By.linkText("ChromeDriver - WebDriver for Chrome - Google Sites"));
+				.findElement(By.partialLinkText("ChromeDriver - WebDriver for Chrome"));
 		chromeDriverLink.click();
 		Thread.sleep(5000);
 	}
@@ -41,7 +41,7 @@ public class ChromeDriverTest {
 		driver.get("http://demoqa.com/");
 		driver.manage().window().fullscreen();
 
-		WebElement draggableMenuButton = driver.findElement(By.id("menu-item-140"));
+		WebElement draggableMenuButton = driver.findElement(By.linkText("Draggable"));
 		draggableMenuButton.click();
 		Thread.sleep(2000);
 		WebElement draggableBox = driver.findElement(By.id("draggable"));
