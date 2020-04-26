@@ -13,7 +13,7 @@ import static org.junit.Assert.assertEquals;
 
 public class ChromeDriverTest {
 
-	private static WebDriver driver;
+	private WebDriver driver;
 
 	@Before
 	public void setup() {
