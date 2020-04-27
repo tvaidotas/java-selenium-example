@@ -20,16 +20,11 @@ public class ApachePOIExcelRead {
             FileInputStream excelFile = new FileInputStream(new File(FILE_NAME));
             Workbook workbook = new XSSFWorkbook(excelFile);
             Sheet datatypeSheet = workbook.getSheetAt(0);
-            Iterator<Row> iterator = datatypeSheet.iterator();
 
-            while (iterator.hasNext()) {
+            for (Row currentRow : datatypeSheet) {
 
-                Row currentRow = iterator.next();
-                Iterator<Cell> cellIterator = currentRow.iterator();
+                for (Cell currentCell : currentRow) {
 
-                while (cellIterator.hasNext()) {
-
-                    Cell currentCell = cellIterator.next();
                     //getCellTypeEnum shown as deprecated for version 3.15
                     //getCellTypeEnum ill be renamed to getCellType starting from version 4.0
                     if (currentCell.getCellTypeEnum() == CellType.STRING) {
