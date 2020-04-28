@@ -26,7 +26,7 @@ public class AppTest {
     public void verifyHomePageTitle() {
 
         // where to create the report file
-        report = new ExtentReports("C:\\Users\\admin\\Desktop\\testResult\\automationreport.html", true);
+        report = new ExtentReports("C:\\Users\\tadas\\Desktop\\testResult\\automationreport.html", true);
         // init/start the test
         test = report.startTest("Verify application Title");
         System.setProperty("webdriver.gecko.driver", "C:\\development\\web_driver\\chromedriver.exe");
@@ -52,14 +52,14 @@ public class AppTest {
     @Test(priority = 2, enabled = true)
     public void verifyLogo() throws IOException {
         test = report.startTest("Verify logo of the application");
-        WebElement src = driver.findElement(By.xpath("//*[@id=\"header\"]/div[2]/a[2]/img"));
+        WebElement src = driver.findElement(By.id("Path_582"));
         if (src != null) {
             test.log(LogStatus.PASS, "verify logo");
         } else {
             test.log(LogStatus.FAIL, "verify logo");
             File scrFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
-            FileUtils.copyFile(scrFile, new File("C:\\Users\\admin\\Desktop\\testResult\\screenshot\\img.jpg"));
-            String image = test.addScreenCapture("C:\\Users\\admin\\Desktop\\testResult\\screenshot\\img.jpg");
+            FileUtils.copyFile(scrFile, new File("C:\\Users\\tadas\\Desktop\\testResult\\screenshot\\img.jpg"));
+            String image = test.addScreenCapture("C:\\Users\\tadas\\Desktop\\testResult\\screenshot\\img.jpg");
             test.log(LogStatus.FAIL, "verify logo of the application", image);
         }
         report.endTest(test);
