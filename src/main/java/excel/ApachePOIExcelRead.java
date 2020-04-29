@@ -12,12 +12,12 @@ import java.util.Iterator;
 public class ApachePOIExcelRead {
 
     private static final String FILE_NAME = System.getProperty("user.dir") + "\\ExcelExample.xlsx";
-
+    private static FileInputStream excelFile;
     public static void main(String[] args) {
 
         try {
 
-            FileInputStream excelFile = new FileInputStream(new File(FILE_NAME));
+            excelFile = new FileInputStream(new File(FILE_NAME));
             Workbook workbook = new XSSFWorkbook(excelFile);
             Sheet datatypeSheet = workbook.getSheetAt(0);
 
@@ -41,6 +41,12 @@ public class ApachePOIExcelRead {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
+        } finally {
+            try {
+                excelFile.close();
+            } catch (IOException e){
+                e.printStackTrace();
+            }
         }
 
     }
