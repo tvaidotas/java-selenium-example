@@ -1,6 +1,7 @@
 package com.qa.reports;
 
 import org.openqa.selenium.*;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.ITestResult;
 import org.testng.annotations.*;
 
@@ -67,7 +68,7 @@ public class AppTest {
         WebElement src = driver.findElement(By.id("Path_582"));
         assertTrue(src.isDisplayed());
         test.log(LogStatus.PASS, "verify logo", "<img src=img.jpg>");
-        test.log(LogStatus.PASS, "verify logo", image); // the way that used to work before I broke it
+        //test.log(LogStatus.PASS, "verify logo", image); // the way that used to work before I broke it
     }
 
     @Test(priority = 2, enabled = true)
