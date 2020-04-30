@@ -1,5 +1,6 @@
 package com.qa.reports;
 
+import org.openqa.selenium.*;
 import org.testng.ITestResult;
 import org.testng.annotations.*;
 
@@ -7,16 +8,12 @@ import java.io.File;
 import java.io.IOException;
 
 import org.apache.commons.io.FileUtils;
-import org.openqa.selenium.By;
-import org.openqa.selenium.OutputType;
-import org.openqa.selenium.TakesScreenshot;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import com.relevantcodes.extentreports.ExtentReports;
 import com.relevantcodes.extentreports.ExtentTest;
 import com.relevantcodes.extentreports.LogStatus;
 
+import static java.lang.Thread.*;
 import static org.testng.AssertJUnit.assertEquals;
 import static org.testng.AssertJUnit.assertTrue;
 
@@ -32,7 +29,6 @@ public class AppTest {
 
     @BeforeTest
     public void startReport(){
-
         report = new ExtentReports (
                 System.getProperty("user.dir") + "/test-output/Report.html",
                 true
@@ -61,7 +57,7 @@ public class AppTest {
     }
 
     @Test(priority = 2, enabled = true)
-    public void verifyLogo() throws IOException {
+    public void verifyLogo() throws IOException, InterruptedException {
         test = report.startTest("Verify application logo is present");
         driver.manage().window().maximize();
         driver.get("https://www.qa.com/");
@@ -73,6 +69,21 @@ public class AppTest {
         test.log(LogStatus.PASS, "verify logo", "<img src=img.jpg>");
         test.log(LogStatus.PASS, "verify logo", image); // the way that used to work before I broke it
     }
+
+    @Test(priority = 2, enabled = true)
+    public void jsExample() throws InterruptedException {
+        driver.manage().window().maximize();
+        driver.get("https://www.qa.com/");
+        if (driver instanceof JavascriptExecutor) {
+            ((JavascriptExecutor)driver).executeScript("alert('Hello');");
+            sleep(3000);
+            driver.switchTo().alert().accept();
+        } else {
+            throw new IllegalStateException("This driver does not support JavaScript!");
+        }
+        sleep(5000);
+    }
+
 
     @AfterMethod
     public void getResult(ITestResult result){
