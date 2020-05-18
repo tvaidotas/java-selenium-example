@@ -46,7 +46,6 @@ public class ChromeDriverTest {
                         }
                     }
                 }).build(), options );
-        driver = new ChromeDriver();
     }
 
     public boolean isWindows(){
