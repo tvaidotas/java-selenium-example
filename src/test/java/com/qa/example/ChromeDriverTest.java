@@ -19,33 +19,33 @@ public class ChromeDriverTest {
 
     @Before
     public void setup() {
-//        if (isWindows()){
-//            System.setProperty("webdriver.chrome.driver", "./chromedriver.exe");
-//        } else {
-//            System.setProperty("webdriver.chrome.driver", "/snap/bin/chromium.chromedriver");
-//        }
-//        ChromeOptions options = new ChromeOptions();
-//        //options.addArguments("--headless");
-//        options.addArguments("--no-sandbox");
-//        options.addArguments("--disable-dev-shm-usage");
-//        options.addArguments("--remote-debugging-port=9222");
-//
-//        driver = new ChromeDriver(
-//                (ChromeDriverService)(new ChromeDriverService.Builder() {
-//                    @Override
-//                    protected File findDefaultExecutable() {
-//                        if (new File("/snap/bin/chromium.chromedriver").exists()) {
-//                            return new File("/snap/bin/chromium.chromedriver") {
-//                                @Override
-//                                public String getCanonicalPath() throws IOException {
-//                                    return this.getAbsolutePath();
-//                                }
-//                            };
-//                        } else {
-//                            return super.findDefaultExecutable();
-//                        }
-//                    }
-//                }).build(), options );
+        if (isWindows()){
+            System.setProperty("webdriver.chrome.driver", "./chromedriver.exe");
+        } else {
+            System.setProperty("webdriver.chrome.driver", "/snap/bin/chromium.chromedriver");
+        }
+        ChromeOptions options = new ChromeOptions();
+        //options.addArguments("--headless");
+        options.addArguments("--no-sandbox");
+        options.addArguments("--disable-dev-shm-usage");
+        options.addArguments("--remote-debugging-port=9222");
+
+        driver = new ChromeDriver(
+                (ChromeDriverService)(new ChromeDriverService.Builder() {
+                    @Override
+                    protected File findDefaultExecutable() {
+                        if (new File("/snap/bin/chromium.chromedriver").exists()) {
+                            return new File("/snap/bin/chromium.chromedriver") {
+                                @Override
+                                public String getCanonicalPath() throws IOException {
+                                    return this.getAbsolutePath();
+                                }
+                            };
+                        } else {
+                            return super.findDefaultExecutable();
+                        }
+                    }
+                }).build(), options );
         driver = new ChromeDriver();
     }
 
