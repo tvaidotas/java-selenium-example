@@ -22,30 +22,16 @@ public class ChromeDriverTest {
         if (isWindows()){
             System.setProperty("webdriver.chrome.driver", "./chromedriver.exe");
         } else {
-            System.setProperty("webdriver.chrome.driver", "/snap/bin/chromium.chromedriver");
+            System.setProperty("webdriver.chrome.driver", "./chromedriver"); // if you want to run chrome
+            System.setProperty("webdriver.chrome.driver", "/snap/bin/chromium.chromedriver"); // if you want to run chromium from snap store
         }
         ChromeOptions options = new ChromeOptions();
-        //options.addArguments("--headless");
-        options.addArguments("--no-sandbox");
+        options.addArguments("--headless"); // headless requires window size to be set as the default 800:600 doesn't work
+        options.addArguments("--window-size=1920,1080");
+        options.addArguments("--no-sandbox"); // some guides said jenkins needs it
         options.addArguments("--disable-dev-shm-usage");
         options.addArguments("--remote-debugging-port=9222");
-
-        driver = new ChromeDriver(
-                (ChromeDriverService)(new ChromeDriverService.Builder() {
-                    @Override
-                    protected File findDefaultExecutable() {
-                        if (new File("/snap/bin/chromium.chromedriver").exists()) {
-                            return new File("/snap/bin/chromium.chromedriver") {
-                                @Override
-                                public String getCanonicalPath() throws IOException {
-                                    return this.getAbsolutePath();
-                                }
-                            };
-                        } else {
-                            return super.findDefaultExecutable();
-                        }
-                    }
-                }).build(), options );
+        driver = new ChromeDriver(options);
     }
 
     public boolean isWindows(){
@@ -54,7 +40,7 @@ public class ChromeDriverTest {
 
     @Test
     public void exampleSelenium() throws InterruptedException {
-        driver.manage().window().fullscreen();
+        driver.manage().window().maximize();
         Thread.sleep(1000);
         driver.get("http://www.google.com/");
         Thread.sleep(1000);
