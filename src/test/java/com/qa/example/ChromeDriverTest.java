@@ -23,7 +23,7 @@ public class ChromeDriverTest {
             System.setProperty("webdriver.chrome.driver", "./chromedriver.exe");
         } else {
             System.setProperty("webdriver.chrome.driver", "./chromedriver"); // if you want to run chrome
-            System.setProperty("webdriver.chrome.driver", "/snap/bin/chromium.chromedriver"); // if you want to run chromium from snap store
+            // System.setProperty("webdriver.chrome.driver", "/snap/bin/chromium.chromedriver"); // if you want to run chromium from snap store
         }
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--headless"); // headless requires window size to be set as the default 800:600 doesn't work
